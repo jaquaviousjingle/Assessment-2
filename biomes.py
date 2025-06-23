@@ -5,6 +5,7 @@ class Biome:
         self.description = None
         self.linked_biomes = {}
         self.character = None
+        self.item = None
 
     def set_description(self, biome_description):
         self.description = biome_description
@@ -45,3 +46,10 @@ class Biome:
         else:
             print("You can't go that way")
             return self
+
+    def get_item(self):
+        return self.item
+    def set_item(self, item_name):
+        self.item = item_name
+
+   

@@ -64,4 +64,5 @@ class Friend(Character):
 
     def hifive(self):
         print(self.name + " hi-fives you back!")
-        
+     
+     

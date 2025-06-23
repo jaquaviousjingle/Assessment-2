@@ -31,8 +31,6 @@ area_51.set_description("A highly classified Air Force facility, known for its s
 no_mans_land = Biome("No Man's Land")
 no_mans_land.set_description("Trenches and pits surround you. Dead trees are the only signs of life in your peripheral, debris and rubble concealing the floor -  basically a vast blanket of nothingness")
 
-current_biome = tundra
-
 tundra.link_biome(east_tundra, "east")
 tundra.link_biome(west_tundra, "west")
 west_tundra.link_biome(tundra, "east")
@@ -51,6 +49,14 @@ area_51.link_biome(west_deciduous_forest, "west")
 area_51.link_biome(east_deciduous_forest, "east")
 area_51.link_biome(no_mans_land, "south")
 
+sword = Item("Sword")
+sword.set_description("A robust and razor-sharp blade - able to defeat a certain enemy")
+vegemite = Item("Vegemite")
+vegemite.set_description("Not tasty whatsoever but can be used to defeat a certain enemy")
+
+tundra.set_item(vegemite)
+west_tundra.set_item(sword)
+
 harry = Enemy("Harry", "A smelly wumpus")
 harry.set_conversation("Hangry...Hanggrry")
 harry.set_weakness("vegemite")
@@ -60,9 +66,17 @@ kratos = Friend("Kratos", "A friendly beast")
 kratos.set_conversation("G'day.")
 west_taiga.set_character(kratos)
 
+current_biome = tundra
+
+bag = []
+
 while dead == False:
+    
     print("\n")
     current_biome.get_details()
+    item = current_biome.get_item()
+    if item is not None:
+        item.describe()
     inhabitant = current_biome.get_character()
     if inhabitant is not None:
         inhabitant.describe()
@@ -96,3 +110,8 @@ while dead == False:
                 inhabitant.hifive()
         else:
             print("There is no one here to hi five :(")
+    elif command == "take":
+        if item is not None:
+            print("You put the " + item.get_name() + "in your leather duffel bag")
+            bag.append(item.getname())
+            current_biome.set_item = None
