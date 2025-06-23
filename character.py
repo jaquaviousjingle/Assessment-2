@@ -63,5 +63,5 @@ class Friend(Character):
         self.feeling = None
 
     def hifive(self):
-        print(self.name + "hi-fives you back!")
+        print(self.name + " hi-fives you back!")
         

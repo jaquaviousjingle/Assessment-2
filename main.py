@@ -1,6 +1,7 @@
 from biomes import Biome
 from character import Character
 from character import Enemy, Friend
+from item import Item
 dead = False
 
 tundra = Biome("Tundra")
@@ -55,7 +56,7 @@ harry.set_conversation("Hangry...Hanggrry")
 harry.set_weakness("vegemite")
 east_tundra.set_character(harry)
 
-kratos = Friend("Kratos", "A friendly bat")
+kratos = Friend("Kratos", "A friendly beast")
 kratos.set_conversation("G'day.")
 west_taiga.set_character(kratos)
 
@@ -94,4 +95,4 @@ while dead == False:
             else:
                 inhabitant.hifive()
         else:
-            print(print("There is no one here to hi five :(")
+            print("There is no one here to hi five :(")
