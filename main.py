@@ -93,13 +93,19 @@ while dead == False:
             if inhabitant is not None and isinstance(inhabitant, Enemy):
                 print("What will you fight with?")
                 fight_with = input()
-                if inhabitant.fight(fight_with) == True:
-                    print("Bravo, you won this battle!")
-                    current_biome.set_character(None)
+                if fight_with in bag:
+                    if inhabitant.fight(fight_with) == True:
+                        print("Bravo, you won this battle!")
+                        current_biome.set_character(None)
+                        if Enemy.enemies_to_defeat == 0:
+                            print("Congratulations, you have survived!")
+                            dead = True
+                    else:
+                        print("Head home, you have lost this battle,")
+                        print("This is the end of the road for you.")
+                        dead = True
                 else:
-                    print("Head home, you have lost this battle,")
-                    print("This is the end of the road for you.")
-                    dead = True
+                    print("You don't have a " + fight_with)
             else:
                 print("There is no one here to battle")
     elif command == "hi five":
