@@ -38,7 +38,7 @@ class Biome:
         print(self.description , "\n")
         for direction in self.linked_biomes:
             biome = self.linked_biomes[direction]
-            print(biome.get_name() , "is to your" , direction,"\n")
+            print(biome.get_name() , "is to the" , direction,"\n")
 
     def move(self, direction):
         if direction in self.linked_biomes:
@@ -47,9 +47,12 @@ class Biome:
             print("You can't go that way")
             return self
 
-    def get_item(self):
-        return self.item
     def set_item(self, item_name):
         self.item = item_name
+
+    def get_item(self):
+        return self.item
+    
+
 
    

@@ -49,22 +49,31 @@ area_51.link_biome(west_deciduous_forest, "west")
 area_51.link_biome(east_deciduous_forest, "east")
 area_51.link_biome(no_mans_land, "south")
 
-sword = Item("Sword")
+sword = Item("sword")
 sword.set_description("A robust and razor-sharp blade - able to defeat a certain enemy")
-vegemite = Item("Vegemite")
+vegemite = Item("vegemite")
 vegemite.set_description("Not tasty whatsoever but can be used to defeat a certain enemy")
+hunting_rifle = Item("hunting rifle")
+hunting_rifle.set_description("A trusty and rusty one-shot rifle used for eliminating any nearby enemy")
 
 tundra.set_item(vegemite)
 west_tundra.set_item(sword)
+east_taiga.set_item(hunting_rifle)
 
 harry = Enemy("Harry", "A smelly wumpus")
 harry.set_conversation("Hangry...Hanggrry")
-harry.set_weakness("vegemite")
+harry.set_weakness("vegemite") and harry.set_weakness("hunting rifle")
 east_tundra.set_character(harry)
 
-kratos = Friend("Kratos", "A friendly beast")
-kratos.set_conversation("G'day.")
+kratos = Enemy("Kratos", "An aggressive, frightening creature")
+kratos.set_conversation("G'day, punk.")
+kratos.set_weakness("sword") and kratos.set_weakness("hunting rifle")
 west_taiga.set_character(kratos)
+
+grizzly = Enemy("Rizzly Grizzly", "A huge, towering brown bear and a brute of nature")
+grizzly.set_conversation("Rawr - Grrrrrrr")
+grizzly.set_weakness("hunting rifle")
+east_deciduous_forest.set_character(grizzly)
 
 current_biome = tundra
 
@@ -93,13 +102,12 @@ while dead == False:
             if inhabitant is not None and isinstance(inhabitant, Enemy):
                 print("What will you fight with?")
                 fight_with = input()
+                fight_with = fight_with.lower()
                 if fight_with in bag:
                     if inhabitant.fight(fight_with) == True:
                         print("Bravo, you won this battle!")
                         current_biome.set_character(None)
-                        if Enemy.enemies_to_defeat == 0:
-                            print("Congratulations, you have survived!")
-                            dead = True
+                        #remove item that was used in battle
                     else:
                         print("Head home, you have lost this battle,")
                         print("This is the end of the road for you.")
@@ -118,6 +126,7 @@ while dead == False:
             print("There is no one here to hi five :(")
     elif command == "take":
         if item is not None:
-            print("You put the " + item.get_name() + "in your duffel bag")
-            bag.append(item.getname())
-            current_biome.set_item = None
+            print("You put the " + item.get_name() + " in your duffel bag")
+            bag.append(item.get_name())
+            print(bag)
+            current_biome.set_item(None)
