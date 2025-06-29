@@ -2,6 +2,7 @@ from biomes import Biome
 from character import Character
 from character import Enemy, Friend
 from item import Item
+import time
 dead = False
 
 tundra = Biome("Tundra")
@@ -79,6 +80,15 @@ current_biome = tundra
 
 bag = []
 
+print("Welcome friend,")
+time.sleep(1)
+print("This is hopefully a journey you will remember.")
+time.sleep(2)
+print("All I can say is...")
+time.sleep(1.5)
+print("Good Luck.")
+time.sleep(2)
+
 while dead == False:
     
     print("\n")
@@ -89,11 +99,13 @@ while dead == False:
     inhabitant = current_biome.get_character()
     if inhabitant is not None:
         inhabitant.describe()
+    print("What shall you do, companion?")
     command = input("> ")
     command = command.lower()
-    if command in ["north", "south", "east", "west"]:
+    if command in ["north", "south", "east", "west"] and inhabitant is None:
         current_biome = current_biome.move(command)
-
+    elif command in ["north", "south", "east", "west"] and inhabitant is not None:
+        print("You can't go that way yet, there are enemies lurking nearby.")
     elif command == "talk":
         if inhabitant is not None:
             inhabitant.talk()
@@ -107,7 +119,7 @@ while dead == False:
                     if inhabitant.fight(fight_with) == True:
                         print("Bravo, you won this battle!")
                         current_biome.set_character(None)
-                        #remove item that was used in battle
+                        bag.remove(fight_with)
                     else:
                         print("Head home, you have lost this battle,")
                         print("This is the end of the road for you.")
