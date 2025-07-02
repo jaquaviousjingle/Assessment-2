@@ -30,7 +30,10 @@ area_51 = Biome("Area 51")
 area_51.set_description("A highly classified Air Force facility, known for its secrecy and association with conspiracy theories about UFOs and alien technology")
 
 no_mans_land = Biome("No Man's Land")
-no_mans_land.set_description("Trenches and pits surround you. Dead trees are the only signs of life in your peripheral, debris and rubble concealing the floor -  basically a vast blanket of nothingness")
+no_mans_land.set_description("Trenches and pits surround you. Dead trees are the only signs of life in your peripheral, debris and rubble concealing the floor -  basically a vast blanket of nothingness. There is nowhere to go except the final destination.")
+
+the_entity = Biome("Final Destination - The Entity's Residence")
+the_entity.set_description("The Entity is an ancient, enigmatic object that emits a powerful signal, drawing every droid across the globe to converge and seek out the remaining humans, with the purpose of uniting them to rebuild the world. There is no way out.")
 
 tundra.link_biome(east_tundra, "east")
 tundra.link_biome(west_tundra, "west")
@@ -49,6 +52,7 @@ east_deciduous_forest.link_biome(area_51, "west")
 area_51.link_biome(west_deciduous_forest, "west")
 area_51.link_biome(east_deciduous_forest, "east")
 area_51.link_biome(no_mans_land, "south")
+no_mans_land.link_biome(the_entity, "south")
 
 sword = Item("sword")
 sword.set_description("A robust and razor-sharp blade - able to defeat a certain enemy")
@@ -82,17 +86,17 @@ bag = []
 
 help = ("To remember:\n'take' - takes an item from a biome to be used further in your journey\n'fight' - if there is an enemy in the biome, you can battle\n A direction that you enter is the direction you will travel - if valid")
 
-print(help)
+#print(help)
 print("-----------------------------------------------------------------------")
-time.sleep(7)
+#time.sleep(7)
 print("Welcome friend,")
-time.sleep(2)
+#time.sleep(2)
 print("This is hopefully a journey you will remember.")
-time.sleep(2)
+#time.sleep(2)
 print("All I can say is...")
-time.sleep(1.5)
+#time.sleep(1.5)
 print("Good Luck.")
-time.sleep(2)
+#time.sleep(2)
 print("-----------------------------------------------------------------------")
 
 while dead == False:
@@ -132,6 +136,8 @@ while dead == False:
                         dead = True
                 else:
                     print("You don't have a " + fight_with)
+                    print("This is the end of the road for you\nIt was fun while it lasted.")
+                    dead = True
             else:
                 print("There is no one here to battle")
     elif command == "hi five":
@@ -148,3 +154,5 @@ while dead == False:
             bag.append(item.get_name())
             print(bag)
             current_biome.set_item(None)
+    elif command == "bag":
+        print(bag)
