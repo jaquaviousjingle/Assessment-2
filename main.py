@@ -86,17 +86,17 @@ bag = []
 
 help = ("To remember:\n'take' - takes an item from a biome to be used further in your journey\n'fight' - if there is an enemy in the biome, you can battle\n A direction that you enter is the direction you will travel - if valid")
 
-#print(help)
+print(help)
 print("-----------------------------------------------------------------------")
-#time.sleep(7)
+time.sleep(7)
 print("Welcome friend,")
-#time.sleep(2)
+time.sleep(2)
 print("This is hopefully a journey you will remember.")
-#time.sleep(2)
+time.sleep(2)
 print("All I can say is...")
-#time.sleep(1.5)
+time.sleep(1.5)
 print("Good Luck.")
-#time.sleep(2)
+time.sleep(2)
 print("-----------------------------------------------------------------------")
 
 while dead == False:
