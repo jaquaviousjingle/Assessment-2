@@ -52,6 +52,7 @@ east_deciduous_forest.link_biome(area_51, "west")
 area_51.link_biome(west_deciduous_forest, "west")
 area_51.link_biome(east_deciduous_forest, "east")
 area_51.link_biome(no_mans_land, "south")
+no_mans_land.link_biome(area_51, "north")
 no_mans_land.link_biome(the_entity, "south")
 
 sword = Item("sword")
@@ -80,12 +81,15 @@ grizzly.set_conversation("Rawr - Grrrrrrr")
 grizzly.set_weakness("hunting rifle")
 east_deciduous_forest.set_character(grizzly)
 
+the_assistant = Character("Master Kawhi Leonard", "He might have something to tell you that might help you on your quest.")
+the_assistant.set_conversation("Greetings,\n")
+
 current_biome = tundra
 
 bag = []
-
-help = ("To remember:\n'take' - takes an item from a biome to be used further in your journey\n'fight' - if there is an enemy in the biome, you can battle\n A direction that you enter is the direction you will travel - if valid")
-
+valid_directions = ("'north', 'east', 'south' or 'west'")
+valid_commands = ["north", "south", "east", "west", "fight", "take", "bag"]
+help = ("To remember:\n'take' - takes an item from a biome to be used further in your journey\n'fight' - if there is an enemy in the biome, you can battle\n'bag' - shows what you have in your bag\n Valid directions that you enter such as " + valid_directions + " will be the direction you travel")
 print(help)
 print("-----------------------------------------------------------------------")
 time.sleep(7)
@@ -112,7 +116,10 @@ while dead == False:
     print("What shall you do, companion?")
     command = input("> ")
     command = command.lower()
-    if command in ["north", "south", "east", "west"] and inhabitant is None:
+    if command not in valid_commands:
+        print("That is an invalid command, please enter a valid command such as one of the following:")
+        print(valid_commands)
+    elif command in ["north", "south", "east", "west"] and inhabitant is None:
         current_biome = current_biome.move(command)
     elif command in ["north", "south", "east", "west"] and inhabitant is not None:
         print("You can't go that way yet, there are enemies lurking nearby.")
@@ -152,7 +159,6 @@ while dead == False:
         if item is not None:
             print("You put the " + item.get_name() + " in your duffel bag")
             bag.append(item.get_name())
-            print(bag)
             current_biome.set_item(None)
     elif command == "bag":
         print(bag)
