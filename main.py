@@ -87,8 +87,8 @@ grizzly.set_conversation("Rawr - Grrrrrrr")
 grizzly.set_weakness("hunting rifle")
 east_deciduous_forest.set_character(grizzly)
 
-helper = Character("Mysterious Being", None)
-helper.set_conversation("I don't recommend you head North, soldier\nyour death might be certain.")
+helper = Character("Mysterious Being", "I don't recommend you head North, soldier\nyour death might be certain.")
+helper.set_conversation("There is nothing more for me to say.")
 west_tundra.set_character(helper)
 
 the_assistant = Character("Master Kawhi Leonard", "He might have something to tell you that might help you on your quest.")
@@ -201,5 +201,6 @@ while not dead or energy > 0:
         print("You have",energy,"energy remaining")
         print(f"You have used {28 - energy} energy")
     
-    #if current_biome == the_entity:
-        
+    if current_biome == no_mans_land:
+        if key1 not in bag or key2 not in bag:
+            
