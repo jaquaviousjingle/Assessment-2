@@ -67,37 +67,44 @@ key2 = Item("The Second Key")
 key2.set_description("One of the two keys needed to access The Entity's Residence")
 
 tundra.set_item(vegemite)
-west_tundra.set_item(sword)
+west_deciduous_forest.set_item(sword)
 east_taiga.set_item(hunting_rifle)
 east_deciduous_forest.set_item(key1)
 west_taiga.set_item(key2)
 
-harry = Enemy("Harry", "A smelly wumpus")
+harry = Enemy("Harry", "A smelly wumpus", 3)
 harry.set_conversation("Hangry...Hanggrry")
 harry.set_weakness("vegemite")
 east_tundra.set_character(harry)
 
-kratos = Enemy("Kratos", "An aggressive, frightening creature")
+kratos = Enemy("Kratos", "An aggressive, frightening creature", 5)
 kratos.set_conversation("G'day, punk.")
 kratos.set_weakness("sword")
 west_taiga.set_character(kratos)
 
-grizzly = Enemy("Rizzly Grizzly", "A huge, towering brown bear and a brute of nature")
+grizzly = Enemy("Rizzly Grizzly", "A huge, towering brown bear and a brute of nature", 5)
 grizzly.set_conversation("Rawr - Grrrrrrr")
 grizzly.set_weakness("hunting rifle")
 east_deciduous_forest.set_character(grizzly)
 
+helper = Character("Mysterious Being", None)
+helper.set_conversation("I don't recommend you head North, soldier\nyour death might be certain.")
+west_tundra.set_character(helper)
+
 the_assistant = Character("Master Kawhi Leonard", "He might have something to tell you that might help you on your quest.")
-the_assistant.set_conversation("Greetings,To get through to The Entity's Residence,\nIt is required that you have the two keys.\nSince you don't, go search for it - and come back once they are in your possession.\nThis is for your own safety.")
+the_assistant.set_conversation("Greetings,\nTo get to The Entity's Residence,\nIt is required that you have the two keys.\nIf you do, you shall pass.\nIf not, search for them.")
 no_mans_land.set_character(the_assistant)
 
 current_biome = tundra
 
-energy = 100
+energy = 28
+#heavy = 5
+#light = 3
+#take = 1
 
 bag = []
 valid_directions = ("'north', 'east', 'south' or 'west'")
-valid_commands = ["north", "south", "east", "west", "fight", "take", "bag", "energy"]
+valid_commands = ["north", "south", "east", "west", "fight", "take", "bag", "energy", "talk"]
 help = ("To remember:\n'take' - takes an item from a biome to be used further in your journey\n'fight' - if there is an enemy in the biome, you can battle\n'bag' - shows what you have in your bag\n Valid directions that you enter such as " + valid_directions + " will be the direction you travel")
 print(help)
 print("-----------------------------------------------------------------------")
@@ -112,8 +119,7 @@ print("Good Luck.")
 time.sleep(2)
 print("-----------------------------------------------------------------------")
 
-while dead == False:
-    
+while not dead or energy > 0:
     print("\n")
     current_biome.get_details()
     time.sleep(0.2)
@@ -147,10 +153,22 @@ while dead == False:
                 fight_with = input()
                 fight_with = fight_with.lower()
                 if fight_with in bag:
+                    attack = input("Heavy or Light attack?\n")
                     if inhabitant.fight(fight_with) == True:
-                        print("Bravo, you won this battle!")
-                        current_biome.set_character(None)
-                        bag.remove(fight_with)
+                        if attack == "heavy":
+                            energy -= 5
+                            inhabitant.health -= 5
+                        elif attack == "light":
+                            energy -= 3
+                            inhabitant.health -= 3
+                        if inhabitant.health <= 0:
+                            print("Bravo, you won this battle!")
+                            current_biome.set_character(None)
+                            bag.remove(fight_with)
+                        else:
+                            print("Head home, you have lost this battle,")
+                            print("This is the end of the road for you.")
+                            dead = True
                     else:
                         print("Head home, you have lost this battle,")
                         print("This is the end of the road for you.")
@@ -161,6 +179,7 @@ while dead == False:
                     dead = True
             else:
                 print("There is no one here to battle")
+            
     elif command == "hi five":
         if inhabitant is not None:
             if isinstance(inhabitant, Enemy):
@@ -174,11 +193,13 @@ while dead == False:
             print("You put the " + item.get_name() + " in your duffel bag")
             bag.append(item.get_name())
             current_biome.set_item(None)
+            energy -= 1
     elif command == "bag":
         print(bag)
 
     elif command == "energy":
-        print(energy)
+        print("You have",energy,"energy remaining")
+        print(f"You have used {28 - energy} energy")
     
     #if current_biome == the_entity:
         
