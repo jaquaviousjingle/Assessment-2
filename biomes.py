@@ -1,3 +1,4 @@
+import time
 class Biome:
 
     def __init__(self, biome_name):
@@ -34,8 +35,11 @@ class Biome:
 
     def get_details(self):
         print(self.name)
+        time.sleep(0.2)
         print("\n---------------------\n")
+        time.sleep(0.2)
         print(self.description , "\n")
+        time.sleep(0.2)
         for direction in self.linked_biomes:
             biome = self.linked_biomes[direction]
             print(biome.get_name() , "is to the" , direction,"\n")
