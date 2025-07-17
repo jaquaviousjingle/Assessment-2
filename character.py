@@ -34,10 +34,14 @@ class Character():
 #ENEMY CLASS
 
 class Enemy(Character):
-    def __init__(self, char_name, char_description):
+    def __init__(self, char_name, char_description, health):
         super().__init__(char_name, char_description)
+        self.health = health
         self.weakness = None
                 
+    def set_health(self, health):
+        self.health = health
+
     def set_weakness(self, weakness):
         self.weakness = weakness
         
@@ -64,5 +68,3 @@ class Friend(Character):
 
     def hifive(self):
         print(self.name + " hi-fives you back!")
-     
-     
