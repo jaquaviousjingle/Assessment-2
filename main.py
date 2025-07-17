@@ -58,8 +58,8 @@ no_mans_land.link_biome(the_entity, "south")
 
 sword = Item("sword")
 sword.set_description("A robust and razor-sharp blade - able to defeat a certain enemy")
-vegemite = Item("vegemite")
-vegemite.set_description("Not tasty whatsoever but can be used to defeat a certain enemy")
+lightstone = Item("lightstone")
+lightstone.set_description("A translucent shard fallen from a star that casts light into the depths of shadows")
 hunting_rifle = Item("hunting rifle")
 hunting_rifle.set_description("A trusty and rusty one-shot rifle used for eliminating any nearby enemy")
 key1 = Item("The First Key")
@@ -67,16 +67,16 @@ key1.set_description("One of the two keys needed to access The Entity's Residenc
 key2 = Item("The Second Key")
 key2.set_description("One of the two keys needed to access The Entity's Residence")
 
-tundra.set_item(vegemite)
+tundra.set_item(lightstone)
 west_deciduous_forest.set_item(sword)
 east_taiga.set_item(hunting_rifle)
 east_deciduous_forest.set_item(key1)
 west_taiga.set_item(key2)
 
-harry = Enemy("Harry", "A smelly wumpus", 3)
-harry.set_conversation("Hangry...Hanggrry")
-harry.set_weakness("vegemite")
-east_tundra.set_character(harry)
+sorcerer = Enemy("Astaroth", "The Shadow Sorcerer", 3)
+sorcerer.set_conversation("The more you fight, the more you become part of me.")
+sorcerer.set_weakness("lightstone")
+east_tundra.set_character(sorcerer)
 
 kratos = Enemy("Kratos", "An aggressive, frightening creature", 5)
 kratos.set_conversation("G'day, punk.")
@@ -106,15 +106,17 @@ energy = 28
 bag = []
 valid_directions = ("'north', 'east', 'south' or 'west'")
 valid_commands = ["north", "south", "east", "west", "fight", "take", "bag", "energy", "talk"]
-help = ("To remember:\n'take' - takes an item from a biome to be used further in your journey\n'fight' - if there is an enemy in the biome, you can battle\n'bag' - shows what you have in your bag\n Valid directions that you enter such as " + valid_directions + " will be the direction you travel")
+help = ("To remember:\n'take' - takes an item from a biome to be used further in your journey\n'fight' - if there is an enemy in the biome, you can battle\n'bag' - shows what you have in your bag\n'energy' - shows you much energy / stamina you have remaining to keep going\n Valid directions that you enter such as " + valid_directions + " will be the direction you travel")
 print(help)
 print("-----------------------------------------------------------------------")
-time.sleep(7)
+time.sleep(4)
 print("Welcome friend,")
 time.sleep(2)
 print("This is hopefully a journey you will remember.")
 time.sleep(2)
 print("All I can say is...")
+time.sleep(1)
+print("The Entity's Residence is your final destination - make use of the energy you have left to reach it in time")
 time.sleep(1.5)
 print("Good Luck.")
 time.sleep(2)
@@ -130,10 +132,10 @@ while not dead or energy > 0:
         item.describe()
     time.sleep(0.2)
     inhabitant = current_biome.get_character()
-    time.sleep(0.2)
+    time.sleep(0.1)
     if inhabitant is not None:
         inhabitant.describe()
-    time.sleep(0.2)
+    time.sleep(0.1)
     print("What shall you do, companion?")
     command = input("> ")
     command = command.lower()
@@ -141,7 +143,15 @@ while not dead or energy > 0:
         print("That is an invalid command, please enter a valid command such as one of the following:")
         print(valid_commands)
     elif command in ["north", "south", "east", "west"] and isinstance(inhabitant, Enemy) == False:
-        current_biome = current_biome.move(command)
+        if current_biome == no_mans_land:
+            if key1 not in bag or key2 not in bag:
+                print("The Entity's Guardian is here")
+                print("[The Guardian says]: You cannot pass without both keys, continue your quest and return when you hold the First and Second Key")
+            else:
+                current_biome = current_biome.move(command)
+        else:
+            current_biome = current_biome.move(command)
+        
     elif command in ["north", "south", "east", "west"] and isinstance(inhabitant, Enemy) == True:
         print("You can't go that way yet, there are enemies lurking nearby.")
     elif command == "talk":
@@ -167,11 +177,11 @@ while not dead or energy > 0:
                             current_biome.set_character(None)
                             bag.remove(fight_with)
                         else:
-                            print("Head home, you have lost this battle,")
+                            print("Head home, you have lost this battle - the enemy overpowered you")
                             print("This is the end of the road for you.")
                             dead = True
                     else:
-                        print("Head home, you have lost this battle,")
+                        print("Head home, you have lost this battle - you couldn't find the enemy's weakness")
                         print("This is the end of the road for you.")
                         dead = True
                 else:
@@ -181,14 +191,6 @@ while not dead or energy > 0:
             else:
                 print("There is no one here to battle")
             
-    elif command == "hi five":
-        if inhabitant is not None:
-            if isinstance(inhabitant, Enemy):
-                print("I wouldn't do that if I were you...")
-            else:
-                inhabitant.hifive()
-        else:
-            print("There is no one here to hi five :(")
     elif command == "take":
         if item is not None:
             print("You put the " + item.get_name() + " in your duffel bag")
@@ -202,6 +204,10 @@ while not dead or energy > 0:
         print("You have",energy,"energy remaining")
         print(f"You have used {28 - energy} energy")
     
-    if current_biome == no_mans_land:
-        if key1 not in bag or key2 not in bag:
-            print("hi")
+    if current_biome == the_entity:
+        print("Welcome,")
+        time.sleep(0.2)
+        print("I assume you have travelled far to reach me, and I have also waited through summers and winters.")
+        time.sleep(0.2)
+        ("And now - I need you to restore the entirety of the world's human race.")
+        time(1)
