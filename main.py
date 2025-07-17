@@ -204,3 +204,4 @@ while not dead or energy > 0:
     
     if current_biome == no_mans_land:
         if key1 not in bag or key2 not in bag:
+            print("hi")
