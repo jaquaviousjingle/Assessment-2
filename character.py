@@ -9,7 +9,7 @@ class Character():
 #Describe this character
 
     def describe(self):
-        print(self.name + " is here!")
+        print(self.name + " is here")
         print(self.description)
 
 #Set what this character will say when talked to

@@ -34,7 +34,6 @@ no_mans_land = Biome("No Man's Land")
 no_mans_land.set_description("Trenches and pits surround you. Dead trees are the only signs of life in your peripheral, debris and rubble concealing the floor -  basically a vast blanket of nothingness. There is nowhere to go except the final destination.")
 
 the_entity = Biome("Final Destination - The Entity's Residence")
-the_entity.set_description("The Entity is an ancient, enigmatic object that emits a powerful signal, drawing every droid across the globe to converge and seek out the remaining humans, with the purpose of uniting them to rebuild the world. There is no way out.")
 
 tundra.link_biome(east_tundra, "east")
 tundra.link_biome(west_tundra, "west")
@@ -93,20 +92,20 @@ helper.set_conversation("There is nothing more for me to say.")
 west_tundra.set_character(helper)
 
 the_assistant = Character("Master Kawhi Leonard", "He might have something to tell you that might help you on your quest.")
-the_assistant.set_conversation("Greetings,\nTo get to The Entity's Residence,\nIt is required that you have the two keys.\nIf you do, you shall pass.\nIf not, search for them.")
 no_mans_land.set_character(the_assistant)
 
 current_biome = tundra
 
-energy = 28
+neural_power = 28
 #heavy = 5
 #light = 3
 #take = 1
 
 bag = []
 valid_directions = ("'north', 'east', 'south' or 'west'")
-valid_commands = ["north", "south", "east", "west", "fight", "take", "bag", "energy", "talk"]
-help = ("To remember:\n'take' - takes an item from a biome to be used further in your journey\n'fight' - if there is an enemy in the biome, you can battle\n'bag' - shows what you have in your bag\n'energy' - shows you much energy / stamina you have remaining to keep going\n Valid directions that you enter such as " + valid_directions + " will be the direction you travel")
+valid_commands = ["north", "south", "east", "west", "fight", "take", "bag", "power", "talk", "help"]
+help = ("'take' - takes an item from a biome to be used further in your journey\n'fight' - if there is an enemy in the biome, you can battle\n'bag' - shows what you have in your bag\n'power' - shows you much neural power you have remaining to keep going\n'help' - shows you what commands are valid as well as the interactions you can make\n Valid directions that you enter such as " + valid_directions + " will be the direction you travel")
+print("To remember:")
 print(help)
 print("-----------------------------------------------------------------------")
 time.sleep(4)
@@ -114,15 +113,120 @@ print("Welcome friend,")
 time.sleep(2)
 print("This is hopefully a journey you will remember.")
 time.sleep(2)
+print("It is 2077, and you must activate the entity to restore humanity's race.")
+time.sleep(1)
 print("All I can say is...")
 time.sleep(1)
-print("The Entity's Residence is your final destination - make use of the energy you have left to reach it in time")
-time.sleep(1.5)
+print("Try talking to some of the creatures you meet along the way, trust me.")
+time.sleep(1)
+print("The Entity's Residence is your final destination - make use of the neural power you have to reach it in time")
+time.sleep(2)
 print("Good Luck.")
 time.sleep(2)
 print("-----------------------------------------------------------------------")
 
-while not dead or energy > 0:
+while dead == False:
+    if neural_power <= 0:
+        print("The exhaustion has caught up to you soldier,\nYou have no more energy to continue this mission.\nIt was fun while it lasted")
+        dead = True
+
+    if current_biome == the_entity:
+        print("You have reached the final destination - The Entity's Residence")
+        print("-----------------------------------------------------------------------")
+        time.sleep(1)
+        print("The entity's 'eye' faces you.")
+        time.sleep(1.5)
+        print("Astaroth...")
+        time.sleep(0.5)
+        print("How...how have you gained access to my residence?")
+        time.sleep(1)
+        print("Didn't Master Leonard stop you?")
+        time.sleep(1)
+        print("Why do you hover there with such an expression of confusion your face?")
+        time.sleep(1)
+        print("ANSWER ME CREATURE")
+        time.sleep(0.2)
+        print("FOR CRYING OUT LOUD")
+        time.sleep(0.5)
+        print("I know Astaroth, and I also know that he told others one phrase along the lines of, 'The more you fight - the more you become part of me'\n...meaning that you have fought several enemies - leading you to become the Shadow Sorcerer himself.")
+        time.sleep(3)
+        print("Maybe you aren't truly Astaroth...")
+        time.sleep(0.5)
+        print("I will ask you two things that only a intelligent, mortal being will answer, then you may activate the signal.")
+        time.sleep(2)
+        print("Otherwise - if you really are Astaroth and manage to send out the signal, all artifically intelligent life forms will erase humanity's existance.")
+        time.sleep(2)
+        answer1 = input("What biome did you find the lightstone shard in?")
+        answer1 = answer1.lower()
+        if answer1 == "tundra":
+            print("Mhmm, good.")
+        else:
+            print("Seems like you are Astaroth after all, so it is time to erase humanity's existance from the face of this planet.")
+            time.sleep(1.5)
+            print("Signalling...")
+            time.sleep(1)
+            print("Signalling...")
+            time.sleep(1)
+            print("Signalling...")
+            time.sleep(0.5)
+            print("All artifically intelligent life forms are now hunting the remaining individuals of the human race")
+            time.sleep(1.5)
+            print("Your mission was not a success")
+            dead = True
+            break
+        print("What is the total sum of the numerals making up ENTITY")
+        time.sleep(0.2)
+        print("In ASCII?")
+        time.sleep(0.2)
+        print("Tell it to me as a number.")
+        answer2 = input("> ")
+        if answer2 != 477:
+            print("Seems like you are Astaroth after all, so it is time to erase humanity's existance from the face of this planet.")
+            time.sleep(1.5)
+            print("Signalling...")
+            time.sleep(1)
+            print("Signalling...")
+            time.sleep(1)
+            print("Signalling...")
+            time.sleep(0.5)
+            print("All artifically intelligent life forms are now hunting the remaining individuals of the human race")
+            time.sleep(1.5)
+            print("Your mission was not a success")
+            dead = True
+            break
+        else:
+            print("Im surprised soldier, you've done well")
+            time.sleep(0.5)
+            print("I believe it is now time to restore the human race.")
+            time.sleep(0.5)
+            print("Signalling...")
+            time.sleep(1)
+            print("Signalling...")
+            time.sleep(1)
+            print("Signa...")
+            time.sleep(0.4)
+            print("Truth is - I'm not signalling anything.")
+            time.sleep(0.7)
+            print("You have proved that you possess intelligence - and therefore...")
+            time.sleep(0.5)
+            print("I am extracting your brain, so that I can 'live' the dream of truly existing as a sentient being.")
+            time.sleep(1.5)
+            print("Thank you, companion.")
+            time.sleep(1)
+            print("And one more thing...")
+            time.sleep(0.5)
+            print("I was the one telling you what biomes were around you, what weapons and keys were in the biomes, and what creatures were in the biomes")
+            time.sleep(1.5)
+            print("I was guiding you towards me")
+            time.sleep(0.4)
+            print("Every")
+            time.sleep(0.4)
+            print("single")
+            time.sleep(0.5)
+            print("time.")
+            dead = True
+            break
+
     print("\n")
     current_biome.get_details()
     time.sleep(0.2)
@@ -144,9 +248,10 @@ while not dead or energy > 0:
         print(valid_commands)
     elif command in ["north", "south", "east", "west"] and isinstance(inhabitant, Enemy) == False:
         if current_biome == no_mans_land:
-            if key1 not in bag or key2 not in bag:
+            if "The First Key" not in bag or "The Second Key" not in bag:
                 print("The Entity's Guardian is here")
                 print("[The Guardian says]: You cannot pass without both keys, continue your quest and return when you hold the First and Second Key")
+                current_biome = area_51
             else:
                 current_biome = current_biome.move(command)
         else:
@@ -167,26 +272,29 @@ while not dead or energy > 0:
                     attack = input("Heavy or Light attack?\n")
                     if inhabitant.fight(fight_with) == True:
                         if attack == "heavy":
-                            energy -= 5
+                            neural_power -= 5
                             inhabitant.health -= 5
                         elif attack == "light":
-                            energy -= 3
+                            neural_power -= 3
                             inhabitant.health -= 3
                         if inhabitant.health <= 0:
-                            print("Bravo, you won this battle!")
+                            print("Commendments to you soldier, this battle has been won in your favour.")
                             current_biome.set_character(None)
                             bag.remove(fight_with)
                         else:
-                            print("Head home, you have lost this battle - the enemy overpowered you")
-                            print("This is the end of the road for you.")
+                            print("The enemy overpowered you")
+                            print("This is the end of the road for you - it was fun while it lasted, soldier.")
                             dead = True
                     else:
-                        print("Head home, you have lost this battle - you couldn't find the enemy's weakness")
+                        print("You have lost this battle - you couldn't find the enemy's weakness")
                         print("This is the end of the road for you.")
                         dead = True
                 else:
+                    time.sleep(0.4)
                     print("You don't have a " + fight_with)
+                    time.sleep(0.2)
                     print("This is the end of the road for you\nIt was fun while it lasted.")
+                    time.sleep(1)
                     dead = True
             else:
                 print("There is no one here to battle")
@@ -196,18 +304,15 @@ while not dead or energy > 0:
             print("You put the " + item.get_name() + " in your duffel bag")
             bag.append(item.get_name())
             current_biome.set_item(None)
-            energy -= 1
+            neural_power -= 1
+
+    elif command == "help":
+        print(help)
+
     elif command == "bag":
+        print("In your bag, you hold:")
         print(bag)
 
-    elif command == "energy":
-        print("You have",energy,"energy remaining")
-        print(f"You have used {28 - energy} energy")
-    
-    if current_biome == the_entity:
-        print("Welcome,")
-        time.sleep(0.2)
-        print("I assume you have travelled far to reach me, and I have also waited through summers and winters.")
-        time.sleep(0.2)
-        ("And now - I need you to restore the entirety of the world's human race.")
-        time(1)
+    elif command == "power":
+        print("You have",neural_power,"neural power reserves remaining")
+        print(f"You have used {28 - neural_power} reserves")
