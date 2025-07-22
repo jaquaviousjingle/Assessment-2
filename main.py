@@ -276,6 +276,8 @@ while dead == False:
     elif command == "fight":
             if inhabitant is not None and isinstance(inhabitant, Enemy) ==  True:
                 print("What will you fight with?")
+                print("In your bag you hold:")
+                print(bag)
                 fight_with = input()
                 fight_with = fight_with.lower()
                 if fight_with in bag:
