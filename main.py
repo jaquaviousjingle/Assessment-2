@@ -293,7 +293,7 @@ while dead == False:
                             current_biome.set_character(None)
                             bag.remove(fight_with)
                             time.sleep(2)
-                            input("Press enter to venture further")
+                            input("Press enter to venture further...")
                         else:
                             print("The enemy overpowered you")
                             print("This is the end of the road for you - it was fun while it lasted, soldier.")
