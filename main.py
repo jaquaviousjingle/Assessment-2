@@ -91,8 +91,8 @@ helper = Character("Mysterious Being", "I don't recommend you head North, soldie
 helper.set_conversation("There is nothing more for me to say.")
 west_tundra.set_character(helper)
 
-the_assistant = Character("Master Kawhi Leonard", "He might have something to tell you that might help you on your quest.")
-no_mans_land.set_character(the_assistant)
+master = Character("Master Kawhi Leonard", "A wise and helpful individual he is - but doesn't talk to strangers unless necessary.")
+no_mans_land.set_character(master)
 
 current_biome = tundra
 
@@ -117,13 +117,13 @@ time.sleep(2)
 print("This is hopefully a journey you will remember.")
 time.sleep(2)
 print("It is 2077, and you must activate the entity to restore humanity's race.")
-time.sleep(1)
+time.sleep(2.5)
 print("All I can say is...")
-time.sleep(1)
-print("Try talking to some of the creatures you meet along the way, trust me.")
-time.sleep(1)
-print("The Entity's Residence is your final destination - make use of the neural power you have to reach it in time")
 time.sleep(2)
+print("Try talking to some of the creatures you meet along the way, trust me.")
+time.sleep(2)
+print("The Entity's Residence is your final destination - make use of the neural power you have to reach it in time")
+time.sleep(3)
 print("Good Luck.")
 time.sleep(2)
 print("-----------------------------------------------------------------------")
@@ -133,38 +133,40 @@ while dead == False:
     reset_screen()
     if neural_power <= 0:
         print("The exhaustion has caught up to you soldier,\nYou have no more energy to continue this mission.\nIt was fun while it lasted")
+        time.sleep(2)
         dead = True
 
     if current_biome == the_entity:
         print("You have reached the final destination - The Entity's Residence")
         print("-----------------------------------------------------------------------")
-        time.sleep(2)
-        print("The entity's 'eye' faces you.")
+        time.sleep(3)
+        print("The entity faces you.")
         time.sleep(2)
         print("Astaroth...")
-        time.sleep(1.5)
-        print("How...how have you gained access to my residence?")
-        time.sleep(2)
-        print("Didn't Master Leonard stop you?")
-        time.sleep(2)
-        print("Why do you hover there with such an expression of confusion your face?")
         time.sleep(2.5)
+        print("How...how have you gained access to my residence?")
+        time.sleep(2.5)
+        print("Didn't Master Leonard stop you?")
+        time.sleep(2.5)
+        print("Why do you hover over there with such an expression of confusion your face?")
+        time.sleep(4)
         print("ANSWER ME CREATURE")
-        time.sleep(1)
+        time.sleep(2)
         print("FOR CRYING OUT LOUD")
         time.sleep(2)
         print("I know Astaroth, and I also know that he told others one phrase along the lines of, 'The more you fight - the more you become part of me'\n...meaning that you have fought several enemies - leading you to become the Shadow Sorcerer himself.")
-        time.sleep(5)
+        time.sleep(6)
         print("Maybe you aren't truly Astaroth...")
-        time.sleep(2)
+        time.sleep(2.5)
         print("I will ask you two things that only a intelligent, mortal being will answer, then you may activate the signal.")
         time.sleep(4)
         print("Otherwise - if you really are Astaroth and manage to send out the signal, all artifically intelligent life forms will erase humanity's existance.")
-        time.sleep(4)
+        time.sleep(6)
         answer1 = input("What biome did you find the lightstone shard in?")
         answer1 = answer1.lower()
         if answer1 == "tundra":
             print("Mhmm, good.")
+            input("Press enter to subsist and keep going...")
         else:
             print("Seems like you are Astaroth after all, so it is time to erase humanity's existance from the face of this planet.")
             time.sleep(3)
@@ -178,9 +180,9 @@ while dead == False:
             time.sleep(4)
             print("Your mission was not a success")
             dead = True
-            break
+            time.sleep(1)
         print("What is the total sum of the numerals making up ENTITY")
-        time.sleep(2)
+        time.sleep(3)
         print("In ASCII?")
         time.sleep(2)
         print("Tell it to me as a number.")
@@ -198,7 +200,7 @@ while dead == False:
             time.sleep(4)
             print("Your mission was not a success")
             dead = True
-            break
+            time.sleep(1)
         else:
             print("Im surprised soldier, you've done well")
             time.sleep(2)
@@ -254,8 +256,7 @@ while dead == False:
     elif command in ["north", "south", "east", "west"] and isinstance(inhabitant, Enemy) == False:
         if current_biome == no_mans_land:
             if "The First Key" not in bag or "The Second Key" not in bag:
-                print("The Entity's Guardian is here")
-                print("[The Guardian says]: You cannot pass without both keys, continue your quest and return when you hold the First and Second Key")
+                print("[Master Kawhi Leonard says]: You cannot pass without both keys, continue your quest and return when you hold the First and Second Key")
                 time.sleep(4)
                 input("Press enter to continue")
                 current_biome = area_51
@@ -279,6 +280,7 @@ while dead == False:
                 fight_with = fight_with.lower()
                 if fight_with in bag:
                     attack = input("Heavy or Light attack?\n")
+                    attack = attack.lower()
                     if inhabitant.fight(fight_with) == True:
                         if attack == "heavy":
                             neural_power -= 5

@@ -23,7 +23,7 @@ class Character():
         if self.conversation is not None:
             print("[" + self.name + " says]: " + self.conversation)
         else:
-            print(self.name + "can't talk to you right now.")
+            print(self.name + " can't talk to you right now.")
 
 #Fight with this Character
 
@@ -52,9 +52,6 @@ class Enemy(Character):
         if combat_item == self.weakness:
             print("You fend " + self.name + " off with the " + combat_item)
             return True
-        else:
-            print(self.name + " swallows you, little wimp")
-            return False
 
     def steal(self):
         print("You steal from " + self.name)
