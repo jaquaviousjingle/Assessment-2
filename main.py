@@ -179,7 +179,7 @@ while dead == False:
         print("In ASCII?")
         time.sleep(0.2)
         print("Tell it to me as a number.")
-        answer2 = input("> ")
+        answer2 = int(input("> "))
         if answer2 != 477:
             print("Seems like you are Astaroth after all, so it is time to erase humanity's existance from the face of this planet.")
             time.sleep(1.5)
