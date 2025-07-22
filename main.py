@@ -324,14 +324,18 @@ while dead == False:
             bag.append(item.get_name())
             current_biome.set_item(None)
             neural_power -= 1
+            time.sleep(2)
 
     elif command == "help":
         print(help)
+        input("Press enter to continue")
 
     elif command == "bag":
         print("In your bag, you hold:")
         print(bag)
+        input("Press enter to continue")
 
     elif command == "power":
         print("You have",neural_power,"neural power reserves remaining")
         print(f"You have used {28 - neural_power} reserves")
+        input("Press enter to continue")
