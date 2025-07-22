@@ -65,6 +65,3 @@ class Friend(Character):
     def __init__(self, char_name, char_description):
         super().__init__(char_name, char_description)
         self.feeling = None
-
-    def hifive(self):
-        print(self.name + " hi-fives you back!")

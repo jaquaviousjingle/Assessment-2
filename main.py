@@ -1,4 +1,4 @@
-
+from reset_screen import reset_screen
 from biomes import Biome
 from character import Character
 from character import Enemy, Friend
@@ -104,11 +104,14 @@ neural_power = 28
 bag = []
 valid_directions = ("'north', 'east', 'south' or 'west'")
 valid_commands = ["north", "south", "east", "west", "fight", "take", "bag", "power", "talk", "help"]
-help = ("'take' - takes an item from a biome to be used further in your journey\n'fight' - if there is an enemy in the biome, you can battle\n'bag' - shows what you have in your bag\n'power' - shows you much neural power you have remaining to keep going\n'help' - shows you what commands are valid as well as the interactions you can make\n Valid directions that you enter such as " + valid_directions + " will be the direction you travel")
+help = ("'take' - takes an item from a biome to be used further in your journey\n'talk' - talks to the character or enemy in the biome\n'fight' - if there is an enemy in the biome, you can battle\n'bag' - shows what you have in your bag\n'power' - shows you much neural power you have remaining to keep going\n'help' - shows you what commands are valid as well as the interactions you can make\n Valid directions that you enter such as " + valid_directions + " will be the direction you travel")
+reset_screen()
 print("To remember:")
 print(help)
 print("-----------------------------------------------------------------------")
 time.sleep(4)
+input("Press enter to continue")
+reset_screen()
 print("Welcome friend,")
 time.sleep(2)
 print("This is hopefully a journey you will remember.")
@@ -124,8 +127,10 @@ time.sleep(2)
 print("Good Luck.")
 time.sleep(2)
 print("-----------------------------------------------------------------------")
+input("Press enter to begin the adventure.")
 
 while dead == False:
+    reset_screen()
     if neural_power <= 0:
         print("The exhaustion has caught up to you soldier,\nYou have no more energy to continue this mission.\nIt was fun while it lasted")
         dead = True
@@ -227,7 +232,6 @@ while dead == False:
             dead = True
             break
 
-    print("\n")
     current_biome.get_details()
     time.sleep(0.2)
     item = current_biome.get_item()
@@ -246,11 +250,14 @@ while dead == False:
     if command not in valid_commands:
         print("That is an invalid command, please enter a valid command such as one of the following:")
         print(valid_commands)
+        input("Press enter to continue")
     elif command in ["north", "south", "east", "west"] and isinstance(inhabitant, Enemy) == False:
         if current_biome == no_mans_land:
             if "The First Key" not in bag or "The Second Key" not in bag:
                 print("The Entity's Guardian is here")
                 print("[The Guardian says]: You cannot pass without both keys, continue your quest and return when you hold the First and Second Key")
+                time.sleep(4)
+                input("Press enter to continue")
                 current_biome = area_51
             else:
                 current_biome = current_biome.move(command)
@@ -262,6 +269,8 @@ while dead == False:
     elif command == "talk":
         if inhabitant is not None:
             inhabitant.talk()
+            time.sleep(3)
+            input("Press enter to continue")
 
     elif command == "fight":
             if inhabitant is not None and isinstance(inhabitant, Enemy) ==  True:
@@ -281,13 +290,17 @@ while dead == False:
                             print("Commendments to you soldier, this battle has been won in your favour.")
                             current_biome.set_character(None)
                             bag.remove(fight_with)
+                            time.sleep(2)
+                            input("Press enter to venture further")
                         else:
                             print("The enemy overpowered you")
                             print("This is the end of the road for you - it was fun while it lasted, soldier.")
+                            time.sleep(1)
                             dead = True
                     else:
                         print("You have lost this battle - you couldn't find the enemy's weakness")
                         print("This is the end of the road for you.")
+                        time.sleep(1)
                         dead = True
                 else:
                     time.sleep(0.4)
