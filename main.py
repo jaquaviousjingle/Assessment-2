@@ -4,6 +4,8 @@ from character import Character
 from character import Enemy, Friend
 from item import Item
 import time
+from colours import Colours
+
 dead = False
 
 tundra = Biome("Tundra")
@@ -106,15 +108,15 @@ valid_directions = ("'north', 'east', 'south' or 'west'")
 valid_commands = ["north", "south", "east", "west", "fight", "take", "bag", "power", "talk", "help"]
 help = ("'take' - takes an item from a biome to be used further in your journey\n'talk' - talks to the character or enemy in the biome\n'fight' - if there is an enemy in the biome, you can battle\n'bag' - shows what you have in your bag\n'power' - shows you much neural power you have remaining to keep going\n'help' - shows you what commands are valid as well as the interactions you can make\n Valid directions that you enter such as " + valid_directions + " will be the direction you travel")
 reset_screen()
-print("To remember:")
+print(Colours.BOLD + "To remember:" + Colours.RESET)
 print(help)
-print("-----------------------------------------------------------------------")
+print(Colours.UNDERLINE + "-----------------------------------------------------------------------" + Colours.RESET)
 time.sleep(4)
-input("Press enter to continue")
+input(Colours.MAGENTA + "Press enter to continue" + Colours.RESET)
 reset_screen()
-print("Welcome friend,")
+print(Colours.BOLD+(Colours.UNDERLINE +"Welcome friend," + Colours.RESET))
 time.sleep(2)
-print("This is hopefully a journey you will remember.")
+print(Colours.BOLD + "This is hopefully a journey you will remember.")
 time.sleep(2)
 print("It is 2077, and you must activate the entity to restore humanity's race.")
 time.sleep(2.5)
@@ -124,10 +126,10 @@ print("Try talking to some of the creatures you meet along the way, trust me.")
 time.sleep(2)
 print("The Entity's Residence is your final destination - make use of the neural power you have to reach it in time")
 time.sleep(3)
-print("Good Luck.")
+print("Good Luck." + Colours.RESET)
 time.sleep(2)
-print("-----------------------------------------------------------------------")
-input("Press enter to begin the adventure.")
+print(Colours.CYAN + "-----------------------------------------------------------------------" + Colours.UNDERLINE)
+input(Colours.BOLD + "Press enter to begin the adventure." + Colours.RESET)
 
 while dead == False:
     reset_screen()
