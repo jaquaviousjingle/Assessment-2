@@ -5,6 +5,7 @@ from character import Enemy, Friend
 from item import Item
 import time
 from colours import Colours
+from map import Map
 
 dead = False
 
@@ -97,6 +98,9 @@ master = Character("Master Kawhi Leonard", "A wise and helpful individual he is 
 no_mans_land.set_character(master)
 
 current_biome = tundra
+game_map = Map()
+game_map.visited.append(current_biome.name)
+
 
 neural_power = 28
 #heavy = 5
@@ -266,7 +270,14 @@ while dead == False:
                 current_biome = current_biome.move(command)
         else:
             current_biome = current_biome.move(command)
-        
+
+        if current_biome.name not in game_map.visited:
+            game_map.visited.append(current_biome.name)
+        game_map.show_map()
+        time.sleep(2)
+        input("Press enter to continue")
+
+
     elif command in ["north", "south", "east", "west"] and isinstance(inhabitant, Enemy) == True:
         print("You can't go that way yet, there are enemies lurking nearby.")
     elif command == "talk":
