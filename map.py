@@ -12,7 +12,7 @@ class Map:
 
 
     def show_map(self):
-        print("\n========== MAP ==========")
+        print("\n======== MAP ========")
         print("          " + self.mark("Area 51"))
         print("    /          \\")
         print(self.mark("West Deciduous Forest") + "      " + self.mark("East Deciduous Forest"))

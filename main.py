@@ -274,7 +274,7 @@ while dead == False:
         if current_biome.name not in game_map.visited:
             game_map.visited.append(current_biome.name)
         game_map.show_map()
-        time.sleep(2)
+        time.sleep(1)
         input("Press enter to continue")
 
 
@@ -335,7 +335,7 @@ while dead == False:
             bag.append(item.get_name())
             current_biome.set_item(None)
             neural_power -= 1
-            time.sleep(2)
+            time.sleep(1)
 
     elif command == "help":
         print(help)
