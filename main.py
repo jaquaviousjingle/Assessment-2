@@ -229,7 +229,7 @@ while dead == False:
             print("And one more thing...")
             time.sleep(3)
             print("I was the one telling you what biomes were around you, what weapons and keys were in the biomes, and what creatures were in the biomes")
-            time.sleep(5)
+            time.sleep(6)
             print("I was guiding you towards me")
             time.sleep(3)
             print("Every")
@@ -273,6 +273,7 @@ while dead == False:
 
         if current_biome.name not in game_map.visited:
             game_map.visited.append(current_biome.name)
+        reset_screen()
         game_map.show_map()
         time.sleep(1)
         input("Press enter to continue")
